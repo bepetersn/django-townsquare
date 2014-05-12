@@ -44,14 +44,10 @@ def create_new_group(name, ct_names):
 class Command(BaseCommand):
 
     args = "No args accepted for now"
-    help = "Initializes a Townsquare instance"
+    help = "Initializes Townsquare permission groups"
 
     def handle(self, *args, **options):
-
-        # make sure database schema is setup 
-        call_command("syncdb")
-        call_command("migrate")
-
+        
         # create permission groups
         create_new_group('Staff', ('session', 'event', 'event location', 'volunteer'))
         create_new_group('Admin', ('session', 'event', 'event location'))
